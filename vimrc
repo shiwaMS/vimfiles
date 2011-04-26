@@ -119,7 +119,7 @@ endfunction
 autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 
 "return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"no &textwidth is set)
+"no &textwidth is set")
 "
 "return '' if no long lines
 "return '[#x,my,$z] if long lines are found, were x is the number of long
@@ -216,6 +216,7 @@ set hidden
 
 "Command-T configuration
 let g:CommandTMaxHeight=10
+let g:CommandTMaxFiles=20000
 let g:CommandTMatchWindowAtTop=1
 
 if has("gui_running")
@@ -254,13 +255,16 @@ if has("gui_running")
 else
     "dont load csapprox if there is no gui support - silences an annoying warning
     let g:CSApprox_loaded = 1
+    "CSApprox need gui support"
+    let g:CSApprox_verbose_level = 0
 
     "set railscasts colorscheme when running vim in gnome terminal
     if $COLORTERM == 'gnome-terminal'
         set term=gnome-256color
-        colorscheme railscasts
+        colorscheme desertEx
     else
-        colorscheme default
+        "colorscheme default
+        colorscheme desertEx
     endif
 endif
 
@@ -336,7 +340,7 @@ endfunction
 function! s:VSetSearch()
     let temp = @@
     norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @/ = '\V' . substitute(escape(@@, '\''), '\n', '\\n', 'g')
     let @@ = temp
 endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
@@ -386,6 +390,7 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
+let g:Align_xstrlen = 3
 let ScreenShot = {'Icon':0, 'Credits':0, 'force_background':'#FFFFFF'}
 
 "Enabling Zencoding
@@ -404,4 +409,17 @@ let g:user_zen_settings = {
   \    'extends' : 'html',
   \  },
  \}
+
+"ctrl + A 保存
+imap <c-a> <esc>:wa<CR>
+map <c-a> :wa<CR>
+"Ctrl + C 退出窗口
+imap <c-c> <esc>:q<CR>
+map <c-c> :q<CR>
+"Ctrl + N 打开sp新窗口
+map <c-n> :sp<CR>
+"Ctrl + B 打开sp新窗口
+map <c-b> :vs<CR>
+
+set noswapfile
 
