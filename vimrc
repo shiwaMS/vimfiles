@@ -2,6 +2,7 @@
 let g:CSApprox_verbose_level = 0
 
 "necessary on some Linux distros for pathogen to properly load bundles
+filetype on
 filetype off
 
 "load pathogen managed plugins
@@ -244,11 +245,6 @@ if has("gui_running")
         "macmenu &File.New\ Tab key=<nop>
         "map <D-t> :CommandT<CR>
         " make Mac's Option key behave as the Meta key
-        set invmmta
-        try
-          set transparency=5
-        catch
-        endtry
     endif
 
     if has("gui_win32") || has("gui_win32s")
@@ -307,6 +303,9 @@ map <A-o> :copen<CR>
 map <A-q> :cclose<CR>
 map <A-j> :cnext<CR>
 map <A-k> :cprevious<CR>
+
+"key mapping for Gundo
+nnoremap <F4> :GundoToggle<CR>
 
 "snipmate setup
 try
