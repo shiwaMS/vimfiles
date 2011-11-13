@@ -433,9 +433,10 @@ map <c-a> :wa<CR>
 imap <c-c> <esc>:q<CR>
 map <c-c> :q<CR>
 "Ctrl + N 打开sp新窗口
-map <c-n> :sp<CR>
+map <c-m> :sp<CR>
 "Ctrl + B 打开sp新窗口
 map <c-b> :vs<CR>
 
 set noswapfile
+set wildignore+=*.gif,*.png,*.jpg,tmp/**,*.js,*.html,public/**
 
